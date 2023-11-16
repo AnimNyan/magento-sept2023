@@ -1,0 +1,58 @@
+<?php
+//need this first segment so both the code editor and the Developer know
+//the class and have access to its methods so no errors appear
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \SwiftOtter\ProductQuestions\ViewModel\PostForm $viewModel
+ */
+$viewModel = $block->getData('view_model');
+?>
+
+<!--My attempt at a form-->
+<!--<form action="/">-->
+<!--    <p><label for="nickname">Nickname:</label></p>-->
+<!--    <input type="text" id="nickname" name="nickname" value="John">-->
+<!--    <p><label for="question">Review of W3Schools:</label></p>-->
+<!--    <textarea id="question" name="question" rows="4" cols="50"></textarea>-->
+<!--    <br>-->
+<!--    <input type="submit" value="Submit">-->
+<!--</form>-->
+<?php if ($viewModel->customerIsLoggedIn()):?>
+<div class="product-question-form">
+    <form id="product_question_form" method="post"
+          action = "<?= $escaper->escapeUrl($viewModel->getActionUrl()) ?>">
+        <input type ="hidden" name ="product_id"
+            value="<?= $escaper->escapeHtmlAttr($viewModel->getProductId()) ?>" />
+        <fieldset class="fieldset">
+            <div class="field">
+                <label for="question_customer_nickname"
+                       class="label">
+                    <span><?= $escaper->escapeHtml( __('Nickname') ) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="customer_nickname"
+                           id="question_customer_nickname"
+                           class="input-text" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="question_content" class="label">
+                    <span><?= $escaper->escapeHtml( __('Question') )?></span>
+                </label>
+                <div class="control">
+                    <textarea name="content" id="question_content"
+                              class="input-text"></textarea>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="primary actions">
+            <button type="submit" class="action submit primary">
+                <span>Submit Question</span>
+            </button>
+        </div>
+    </form>
+</div>
+<?php endif; ?>

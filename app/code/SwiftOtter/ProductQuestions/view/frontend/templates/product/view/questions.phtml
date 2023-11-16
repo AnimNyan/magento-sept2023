@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+/** @var SwiftOtter\ProductQuestions\ViewModel\ProductView\Questions $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+<div class="product-questions">
+    <!--getHeading() is getting store config settings from app/code/SwiftOtter/ProductQuestions/etc/adminhtml/system.xml
+    This is the Field #3: (Text input) Product Page Heading for Product Questions:-->
+    <h3><?=  $escaper->escapeHtml( $viewModel->getHeading() ) ?></h3>
+
+    <!--This is from here: app/code/SwiftOtter/ProductQuestions/view/frontend/layout/catalog_product_view.xml  <block name="questions.post_form" as="post_form"-->
+    <?= $block->getChildHtml("questions.post_form"); ?>
+</div>

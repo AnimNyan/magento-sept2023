@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module
+        :Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <group id="questions" translate="label" type="text"
+                   sortOrder="200" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Product Questions</label>
+
+                <!--Field #1: (Boolean) Enable ProductQuestions Section:-->
+                <field id="enabled" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" canRestore="1">
+                    <label>Enable Product Questions Section</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <!--Field #2: (Boolean) Restrict Product Questions to Logged in only:-->
+                <field id="restrict_logged_in" translate="label" type="select"
+                       sortOrder="20" showInDefault="1" canRestore="1">
+                    <label>Restrict Product Questions to Logged in only</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <!--Field #3: (Text input) Product Page Heading for Product Questions:-->
+                <field id="heading" translate="label" type="text"
+                       sortOrder="21" showInDefault="1" canRestore="1">
+                    <label>Product Page Heading for Product Questions</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment>
+                        Use {{name}} as Product Questions Heading placeholder
+                    </comment>
+                </field>
+
+            </group>
+
+
+        </section>
+    </system>
+</config>
+
+<!--This is example code here
+<field id="synchronize_with_backend" translate="label" type="select"
+       showInDefault="1" canRestore="1">
+    <label>Synchronize widget products with backend storage</label>
+    <source_model>
+        Magento\Config\Model\Config\Source\Yesno
+    </source_model>
+</field>
+
+<section id="catalog" translate="label" type="text"
+         sortOrder="40" showInDefault="1"
+         showInWebsite="1" showInStore="1">
+...
+<label>Catalog</label>
+<tab>catalog</tab>
+<resource>Magento_Catalog::config_catalog</resource>
+<group id="fields_masks" translate="label"
+       type="text" sortOrder="90"
+       showInDefault="1" showInWebsite="1" showInStore="1">
+    <label>Product Fields Auto-Generation</label>
+    <field id="sku" translate="label comment" type="text"
+           sortOrder="10" showInDefault="1" canRestore="1">
+        <label>Mask for SKU</label>
+        <comment>
+            Use {{name}} as Product Name placeholder
+        </comment>
+    </field>
+    ...
+    -->
