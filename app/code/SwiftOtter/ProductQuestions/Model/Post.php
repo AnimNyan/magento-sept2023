@@ -12,6 +12,7 @@ class Post extends AbstractModel
      */
     protected  function  _construct()
     {
+        //hey
         $this->_init(
             \SwiftOtter\ProductQuestions\Model\ResourceModel\Post::class
         );
