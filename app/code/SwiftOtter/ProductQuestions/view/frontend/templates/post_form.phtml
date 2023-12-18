@@ -9,15 +9,7 @@
 $viewModel = $block->getData('view_model');
 ?>
 
-<!--My attempt at a form-->
-<!--<form action="/">-->
-<!--    <p><label for="nickname">Nickname:</label></p>-->
-<!--    <input type="text" id="nickname" name="nickname" value="John">-->
-<!--    <p><label for="question">Review of W3Schools:</label></p>-->
-<!--    <textarea id="question" name="question" rows="4" cols="50"></textarea>-->
-<!--    <br>-->
-<!--    <input type="submit" value="Submit">-->
-<!--</form>-->
+
 <?php if ($viewModel->customerIsLoggedIn()):?>
 <div class="product-question-form">
     <form id="product_question_form" method="post"

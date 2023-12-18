@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:
-      View/Layout/etc/page_configuration.xsd">
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
             <block name="questions.tab" as="questions"
@@ -12,15 +11,20 @@
                     <argument name="view_model" xsi:type="object">
                         SwiftOtter\ProductQuestions\ViewModel\ProductView\Questions
                     </argument>
-                </arguments>
-            </block>
-            <block name="questions.post_form" as="post_form"
-                   template="SwiftOtter_ProductQuestions::post_form.phtml">
-                <arguments>
-                    <argument name="view_model" xsi:type="object">
-                        SwiftOtter\ProductQuestions\ViewModel\PostForm
+                    <argument name="date_format" xsi:type="const">
+                        IntlDateFormatter::LONG
                     </argument>
                 </arguments>
+
+                <!--This is from app/code/SwiftOtter/ProductQuestions/view/frontend/templates/post_form.phtml-->
+                <block name="questions.post_form" as="post_form"
+                       template="SwiftOtter_ProductQuestions::post_form.phtml">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">
+                            SwiftOtter\ProductQuestions\ViewModel\PostForm
+                        </argument>
+                    </arguments>
+                </block>
             </block>
         </referenceContainer>
     </body>

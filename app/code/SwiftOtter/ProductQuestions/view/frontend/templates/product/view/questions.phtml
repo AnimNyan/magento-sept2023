@@ -6,6 +6,10 @@
 
 /** @var SwiftOtter\ProductQuestions\ViewModel\ProductView\Questions $viewModel */
 $viewModel = $block->getData('view_model');
+
+$questions = $viewModel->getQuestions();
+//default to a value if it is not set
+$dateFormat = $block->getData('date_format') ?? \IntlDateFormatter::SHORT;
 ?>
 <div class="product-questions">
     <!--getHeading() is getting store config settings from app/code/SwiftOtter/ProductQuestions/etc/adminhtml/system.xml
@@ -13,5 +17,51 @@ $viewModel = $block->getData('view_model');
     <h3><?=  $escaper->escapeHtml( $viewModel->getHeading() ) ?></h3>
 
     <!--This is from here: app/code/SwiftOtter/ProductQuestions/view/frontend/layout/catalog_product_view.xml  <block name="questions.post_form" as="post_form"-->
-    <?= $block->getChildHtml("questions.post_form"); ?>
+    <?= $block->getChildHtml("post_form"); ?>
+
+    <?php foreach ($questions as $question): ?>
+        <article class="product-question" style="border: 1px solid #aaa;">
+            <header>
+                <p><?= nl2br($escaper->escapeHtml($question->getContent()))?></p>
+                <aside>
+                    <?=
+                    __(
+                        'Asked by user %1 on %2',
+                        '<span class="nickname">' . $escaper->escapeHtml($question->getCustomerNickname()),
+                            $escaper->escapeHtml($block->formatDate($question->getCreatedAt(), $dateFormat))
+                        . '</span>'
+                    )
+                    ?>
+                </aside>
+            </header>
+            <!--These are answers from here on out-->
+            <div class="question-content">
+                <?php $answers = $question->getAnswers() ?? []; ?>
+                <?php foreach ($answers as $answer): ?>
+                    <section class="product-answer">
+                        <p><?= nl2br(
+                                $escaper->escapeHtml($answer->getContent())
+                            ) ?></p>
+                        <aside><?= __(
+                                'Answered by user %1 on %2',
+
+                                '<span class="nickname">'
+                                . $escaper->escapeHtml(
+                                    $answer->getCustomerNickname()
+                                ) . '</span>',
+
+                                $escaper->escapeHtml(
+                                    $block->formatDate(
+                                        $answer->getCreatedAt(),
+                                        $dateFormat
+                                    )
+                                )
+                            ) ?></aside>
+                    </section>
+                <?php endforeach; ?>
+            </div>
+        </article>
+    <?php endforeach; ?>
+
+
 </div>
