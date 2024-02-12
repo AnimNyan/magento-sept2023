@@ -39,7 +39,7 @@ class InitPostFromRequest
      */
     public function execute(array $data, bool $attachProduct = false): Post
     {
-        //the var annotation indicates what should be the return typ e of the create command
+        //the var annotation indicates what should be the return type of the create command
         /** @var Post $post */
         $post = $this->postFactory->create();
 

@@ -82,8 +82,8 @@ class Create implements ActionInterface, HttpPostActionInterface
                 && $this->validateFormKey()){
                 //if succeeds without exceptions then do the save
                 $this->postResource->save($post);
-                $this->messageManager->addSuccessMessage(__('You have successfully submitted your post.'));
                 //Success message
+                $this->messageManager->addSuccessMessage(__('You have successfully submitted your post.'));
             }
             //after get hydrated post
             $this->postResource->save($post);

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Magento\Framework\View\Element\Template $block
+ * @var \SwiftOtter\ProductQuestions\Block\ProductView\Questions $block
  * @var \Magento\Framework\Escaper $escaper
  */
 
@@ -60,6 +60,10 @@ $dateFormat = $block->getData('date_format') ?? \IntlDateFormatter::SHORT;
                     </section>
                 <?php endforeach; ?>
             </div>
+
+            <?php //we are in the middle of a loop of questions and want to print out
+            //the related answer forms for the current question?>
+            <?= $block->getPostFormHtml((int) $question->getId());?>
         </article>
     <?php endforeach; ?>
 

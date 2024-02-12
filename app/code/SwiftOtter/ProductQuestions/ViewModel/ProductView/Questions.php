@@ -42,6 +42,7 @@ class Questions implements ArgumentInterface
 
     public function getQuestions(): array
     {
+        //caching the first time we are fetching it
         $product = $this->getProduct();
 
         //if we didn't get back a product
